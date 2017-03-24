@@ -1,0 +1,84 @@
+#all-tweets .tweet {
+  position: relative;
+  opacity: .7;
+  margin: 50px 2em;
+  border: 1px solid #eee;
+  background-color: #ffffff;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 2px 7px #292929;
+  -webkit-box-shadow: 0px 2px 7px #292929;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;  box-shadow: 0px 2px 7px #292929;
+}
+
+#all-tweets .tweet header{
+  border-bottom: 1px solid #EEE;
+   background-color: whiteSmoke;
+  height: 80px;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  text-align: left;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-right-radius: 5px;
+}
+
+#all-tweets .tweet header img{
+  float: left;
+  height:60px;
+  width:60px;
+}
+
+#all-tweets .tweet header h2{
+  padding-left: 70px;
+}
+
+#all-tweets .tweet header h3{
+  float: right;
+  font-weight: lighter;
+  font-size: 1em;
+  color: grey;
+}
+#all-tweets .tweet footer{
+  height: 40px;
+  background-color: whiteSmoke;
+  border-top: 1px solid #DDD;
+  border-bottom-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#all-tweets .tweet footer h3{
+  text-align: left;
+  font-size: .8em;
+  font-weight: lighter;
+  margin: 10px;
+}
+
+#all-tweets .tweet footer i{
+  float: right;
+  letter-spacing: 5px;
+  color: #2ecc71;
+  padding-top: 10px;
+  display: none;
+  }
+
+#all-tweets .tweet:hover footer i {
+  display: block;
+}
+
+#all-tweets .tweet .mainbody{
+  margin-top: 0;
+  padding: 5px;
+  text-align: left;
+  overflow: auto;
+}
+
+#all-tweets .tweet:hover {
+  opacity: 1;
+  transition: 1s all ease-in-out;
