@@ -27,6 +27,11 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
 
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/en-ca.js"></script>
+
   </head>
 
   <body>
@@ -35,17 +40,18 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <input type="submit" value="Compose" class="composeButton" />
     </nav>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-        <form method="POST" action="/tweets/">
-          <textarea name="text" placeholder="What are you humming about?"></textarea>
+        <form>
+          <textarea id="tweetContent" name="text" placeholder="What are you humming about?"></textarea>
           <div class="buttonCounter">
-            <input type="submit" value="Tweet">
-            <span class="counter">140</span>
+            <input type="submit" value="Tweet" id="submit-tweet">
+            <span class="counter" id="charCounter">140</span>
           </div>
         </form>
       </section>

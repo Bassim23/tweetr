@@ -81,4 +81,4 @@
 
 #all-tweets .tweet:hover {
   opacity: 1;
-  transition: 1s all ease-in-out;
+  transition: .5s all ease-in-out;
