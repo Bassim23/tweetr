@@ -4,10 +4,57 @@ $(document).ready(function(event) {
     alert(message);
   };
 
-  $('.composeButton').on('click', function(){
-      $('.new-tweet').slideToggle(200);
-      $('#tweetContent').focus();
-    });
+function createTweetElement(tweet) {
+  var $article = $( "<article class='tweet'>")
+  var $header = $('<header>');
+  var $name = $('<h2 class="name">'+tweet.user.name+'</h2>');
+  var $handle = $('<h3 class="handle">'+tweet.user.handle+'</h3>');
+  var $avatars = $("<img class='avatar' src=" +tweet.user.avatars.regular+">");
+  var $p = $('<p>').text(tweet.content.text);
+  var $mainBody = $("<div class='mainbody'>");
+  var $flag = $("<i class='fa fa-flag'>");
+  var $retweet = $("<i class='fa fa-retweet'>");
+  var $heart = $("<i class='fa fa-heart'>");
+  var $footer = $("<footer>");
+  var $timestamp = $("<h3 class='timeStamp'>"+ moment(tweet.created_at).fromNow()+ "</h3>");
+
+  $header.append($avatars).append($handle).append($name);
+  $mainBody.append($p);
+  $footer.append($flag).append($retweet).append($heart).append($timestamp);
+
+  $article.append($header).append($mainBody).append($footer);
+
+  return $article;
+}
+
+function renderTweets(tweets) {
+  $('#all-tweets').empty();
+  for (var i in tweets){
+    var article = createTweetElement(tweets[i]);
+    $('#all-tweets').prepend(article);
+  }
+  // $('#all-tweets').prepend(tweets.map(createTweetElement));
+}
+function loadTweets(){
+  $.ajax({
+    method: 'GET',
+    url: '/tweets',
+    dataType: 'json',
+    success: function (data) {
+    console.log("ajax get successful")
+    renderTweets(data);
+    },
+    error: function() {
+      console.log("Error");
+    }
+  });
+};
+
+$('.composeButton').on('click', function(){
+    $('.new-tweet').slideToggle(200);
+    $('#tweetContent').focus();
+  });
+
 
  $("form").on('submit', function(event){
     event.preventDefault();
@@ -44,52 +91,7 @@ $(document).ready(function(event) {
     });
   });
 
-function createTweetElement(tweet) {
-  var $article = $( "<article class='tweet'>")
-  var $header = $('<header>');
-  var $name = $('<h2 class="name">'+tweet.user.name+'</h2>');
-  var $handle = $('<h3 class="handle">'+tweet.user.handle+'</h3>');
-  var $avatars = $("<img class='avatar' src=" +tweet.user.avatars.regular+">");
-  var $p = $('<p>').text(tweet.content.text);
-  var $mainBody = $("<div class='mainbody'>");
-  var $flag = $("<i class='fa fa-flag'>");
-  var $retweet = $("<i class='fa fa-retweet'>");
-  var $heart = $("<i class='fa fa-heart'>");
-  var $footer = $("<footer>");
-  var $timestamp = $("<h3 class='timeStamp'>"+ moment(tweet.created_at).fromNow()+ "</h3>");
 
-  $header.append($avatars).append($handle).append($name);
-  $mainBody.append($p);
-  $footer.append($flag).append($retweet).append($heart).append($timestamp);
-
-  $article.append($header).append($mainBody).append($footer);
-
-  return $article;
-}
-
-function renderTweets(tweets) {
-  $('#all-tweets').empty();
-  for (var i in tweets){
-    var article = createTweetElement(tweets[i]);
-    $('#all-tweets').prepend(article);
-  }
-  // $('#all-tweets').prepend(tweets.map(createTweetElement));
-}
-
-function loadTweets(){
-  $.ajax({
-    method: 'GET',
-    url: '/tweets',
-    dataType: 'json',
-    success: function (data) {
-    console.log("ajax get successful")
-    renderTweets(data);
-    },
-    error: function() {
-      console.log("Error");
-    }
-  });
-};
 
 loadTweets();
 });
